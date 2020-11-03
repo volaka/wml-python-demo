@@ -73,6 +73,13 @@ class TodoList(Resource):
         #print(api.payload)
         return TEMP.create(api.payload), 201
 
+@ns.route('/healthz')
+class Healt(Resource):
+    '''Returns "OK" when application is ready'''
+    @ns.doc('health')
+    def get(self):
+        '''Retur OK'''
+        return { 'health': 'OK' }, 200
 
 @ns.route('/<int:id>')
 @ns.response(404, 'Temperature not found')
