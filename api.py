@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
 api = Api(app, version='1.0', title='Temperature Guesser',
-    description='A simple temperature guesser application which uses watsonn machine learning service',
+    description='A simple temperature guesser application which uses watson machine learning service',
 )
 
 ns = api.namespace('temp', description='Temperature operations')
