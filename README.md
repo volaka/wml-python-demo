@@ -34,4 +34,4 @@ Deploy your model to your deployment service using AUTO AI or Jupyter notebook. 
 
 > You can also run `python3 get_uids.py` command to get you space and deployment uids. You have to set your **REGION** and **APIKEY** first in `.env` file.
 
-[Detailed watson studio and machine learning documentation is here].
+[Detailed watson studio and machine learning documentation is here](https://eu-gb.dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-samples.html?audience=wdp&context=wdp).
