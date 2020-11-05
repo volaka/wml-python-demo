@@ -57,7 +57,7 @@ class Temp(object):
 TEMP = Temp()
 
 @ns.route('/')
-class TodoList(Resource):
+class TempList(Resource):
     '''Shows a list of all temperature requests, and lets you POST to request  new temperature'''
     @ns.doc('list_temps')
     @ns.marshal_list_with(temp)
@@ -73,18 +73,10 @@ class TodoList(Resource):
         #print(api.payload)
         return TEMP.create(api.payload), 201
 
-@ns.route('/healthz')
-class Healt(Resource):
-    '''Returns "OK" when application is ready'''
-    @ns.doc('health')
-    def get(self):
-        '''Retur OK'''
-        return { 'health': 'OK' }, 200
-
 @ns.route('/<int:id>')
 @ns.response(404, 'Temperature not found')
 @ns.param('id', 'The temperature identifier')
-class Todo(Resource):
+class TempResource(Resource):
     '''Show a single temperature item and lets you delete them'''
     @ns.doc('get_temp')
     @ns.marshal_with(temp)
@@ -105,6 +97,14 @@ class Todo(Resource):
         '''Update a temperature given its identifier'''
         return TEMP.update(id, api.payload)
 
+@ns.route('/healthz')
+class Health(Resource):
+    '''Returns "OK" when application is ready'''
+    @ns.doc('health')
+    def get(self):
+        '''Return OK'''
+        return { 'health': 'OK' }, 200
+
 
 if __name__ == '__main__':
     load_dotenv(find_dotenv())
@@ -121,7 +121,6 @@ if __name__ == '__main__':
     client = APIClient(wml_credentials)
     client.set.default_space(os.environ.get("SPACE_UID"))
     deployment_uid=os.environ.get("DEPLOYMENT_UID")
-    # client.deployments.list()
-    # deployment = client.deployments.get_details(os.environ.get("DEPLOYMENT_UID"))
-    # print(client.deployments.get_scoring_href(deployment))
-    app.run(debug=True, host="0.0.0.0")
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=5000)
+    #app.run(debug=True, host="0.0.0.0")

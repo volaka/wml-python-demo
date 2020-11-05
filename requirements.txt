@@ -3,3 +3,4 @@ ibm-watson-machine-learning
 python-dotenv
 flask
 flask-restx
+waitress
