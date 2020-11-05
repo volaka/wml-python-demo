@@ -3,6 +3,8 @@ from flask_restx import Api, Resource, fields
 from werkzeug.middleware.proxy_fix import ProxyFix
 from ibm_watson_machine_learning import APIClient
 from dotenv import load_dotenv, find_dotenv
+from waitress import serve
+
 import os
 
 app = Flask(__name__)
@@ -121,6 +123,5 @@ if __name__ == '__main__':
     client = APIClient(wml_credentials)
     client.set.default_space(os.environ.get("SPACE_UID"))
     deployment_uid=os.environ.get("DEPLOYMENT_UID")
-    from waitress import serve
     serve(app, host="0.0.0.0", port=5000)
     #app.run(debug=True, host="0.0.0.0")

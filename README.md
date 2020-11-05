@@ -36,6 +36,3 @@ Deploy your model to your deployment service using AUTO AI or Jupyter notebook. 
 
 [Detailed watson studio and machine learning documentation is here](https://eu-gb.dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-samples.html?audience=wdp&context=wdp).
 
-## TODO
-
-write docker scripts, push it and kubernetes scripts.
